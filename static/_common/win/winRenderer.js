@@ -1,9 +1,23 @@
 const { ipcRenderer } = require('electron');
+const key = require('../Key.js')
+const winConstVar = require('./_winConst.js')
 
-var key_root_config_server='root_config_server';//存放根窗口的子窗口-配置服务器
-var key_root_config_project='root_config_project';//存放根窗口的子窗口-配置项目
-var key_root_config_projectMap='root_config_projectMap';//存放根窗口的子窗口-配置项目用到的键值对
-
-function f_close_root_config_server(){
-    ipcRenderer.sendSync('winMain_closeSystemWIN',key_root_config_server);
+//关闭 配置服务器 的窗口
+function f_close_root_config_server() {
+    ipcRenderer.sendSync(key.ipcKey_winMain_closeSystemWIN, winConstVar.key_root_config_server);
 }
+
+//关闭 配置项目 的窗口
+function f_close_root_config_project() {
+    ipcRenderer.sendSync(key.ipcKey_winMain_closeSystemWIN, winConstVar.key_root_config_project);
+}
+
+//关闭 配置项目-键值对 的窗口
+function f_close_root_config_projectMap() {
+    ipcRenderer.sendSync(key.ipcKey_winMain_closeSystemWIN, winConstVar.key_root_config_projectMap);
+}
+
+
+exports.f_close_root_config_server = f_close_root_config_server
+exports.f_close_root_config_project = f_close_root_config_project
+exports.f_close_root_config_projectMap = f_close_root_config_projectMap

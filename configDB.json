@@ -1,8 +1,9 @@
 {
-  "system": {
-    "url": "https://nuwait.cn2"
-  },
-  "system_config_server_url": "https://nuwait.cn",
-  "system_config_server_userAccount": "pankeng1988w",
-  "system_config_server_userPassword": "12345678"
+  "config": {
+    "server": {
+      "url": "https://nuwait.cn",
+      "userAccount": "pankeng1988w",
+      "userPassword": "12345678"
+    }
+  }
 }

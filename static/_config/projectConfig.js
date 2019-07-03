@@ -1,7 +1,7 @@
 require('electron-connect').client.create();
 
 const win = require('../static/_common/win/winRenderer.js');
-const dao = require('../static/_common/_lowdb/serverConfigDBRenderer.js');
+const dao = require('../static/_common/_lowdb/configDBRenderer.js');
 const uiTool = require('../static/_common/tools/uiTools.js');
 //------------------------------------------------------------
 //保存
