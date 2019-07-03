@@ -23,21 +23,25 @@ exports.createRoot = function() { //根
     return WIN[winConstVar.key_root];
 };
 
-exports.createRootConfigServer = function() { //创建子窗口
+exports.createRootConfigServer = function() { //创建子窗口-服务器配置
     private_createRootConfigServer(winConstVar.key_root_config_server, '服务器配置', '_config/serverConfig.html');
 };
 
+exports.createRootConfigProject = function() { //创建子窗口-项目配置
+    private_createRootConfigServer(winConstVar.key_root_config_project, '项目配置', '_config/projectConfig.html');
+};
+exports.createRootConfigProjectMap = function() { //创建子窗口-项目键值对配置
+    private_createRootConfigServer(winConstVar.key_root_config_projectMap, '项目键值对配置', '_config/projectConfig.html');
+};
 
 //--------------------------------------------------------------------------------
 exports.regColseEventIPC = function(ipcMain) {
-        ipcMain.on(key.ipcKey_winMain_closeSystemWIN, (event, arg) => {
-            // console.log('aaaaaaaaaaaaa'+arg)
-            WIN[arg].close();
-        })
-    }
-    //--------------------------------------------------------------------------------
+    ipcMain.on(key.ipcKey_winMain_closeSystemWIN, (event, arg) => {
+        WIN[arg].close();
+    })
+}
 
-
+//--------------------------------------------------------------------------------
 //根的子窗口
 function private_createRootConfigServer(key, title, url) {
     if (!WIN[key]) {

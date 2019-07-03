@@ -10,31 +10,67 @@
     <script src="../static/uikit/dist/js/components/notification.min.js"></script>
     <script src="../static/uikit/dist/js/uikit-icons.min.js"></script>
     <!-- 模块js -->
-    <!-- <script src="../static/_config/projectConfig.js"></script> -->
+    <script src="../static/_config/projectConfig.js"></script>
 </head>
 
 
 <body>
-    <div class="uk-tile uk-text-center uk-tile-secondary">服务器参数配置</div>
-    <div style="height: 20px;"></div>
-
+    <div class="uk-text-center uk-tile-secondary">项目配置</div>
+    <div style="height: 10px;"></div>
+    项目绝对路径<input type="text" />
     <div class="formCenter">
-        <div>
-            <span class="uk-label">服务器路径</span>
-            <input id='configURL' class="uk-input" type="text" placeholder="https://nuwait.cn">
-        </div>
-        <div>
-            <span class="uk-label">登录账号</span>
-            <input id='configAccount' class="uk-input" type="text" placeholder="账号">
-        </div>
-        <div>
-            <span class="uk-label">登录密码</span>
-            <input id='configPassword' class="uk-input" type="text" placeholder="密码">
+        <div style="height:250px; overflow-y: scroll">
+            <table class="uk-table uk-table-small uk-table-hover uk-table-divider">
+                <thead>
+                    <tr>
+                        <th>表达式</th>
+                        <th>路径</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="t1"><input type="text" /></td>
+                        <td class="t2"><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="t1"><input type="text" /></td>
+                        <td class="t2"><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="t1"><input type="text" /></td>
+                        <td class="t2"><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="t1"><input type="text" /></td>
+                        <td class="t2"><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="t1"><input type="text" /></td>
+                        <td class="t2"><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="t1"><input type="text" /></td>
+                        <td class="t2"><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="t1"><input type="text" /></td>
+                        <td class="t2"><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="t1"><input type="text" /></td>
+                        <td class="t2"><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="t1"><input type="text" /></td>
+                        <td class="t2"><input type="text" /></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
     <div class="layout_buttom">
-        <button class="uk-button uk-button-default" onclick="win.f_close_root_config_server()">关闭</button>
+        <button class="uk-button uk-button-default" onclick="win.f_close_root_config_project()">关闭</button>
         <button class="uk-button uk-button-primary" onclick="saveConfig();">保存</button>
     </div>
 </body>
