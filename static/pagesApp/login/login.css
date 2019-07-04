@@ -15,20 +15,19 @@ body {
 /* 中部 */
 
 .formCenter {
-    flex-grow: 1;
+    flex-grow: 1
+}
+
+.formCenter div {
+    margin: 8px;
 }
 
 
 /* 脚部空间 */
 
 .layout_buttom {
-    height: 86px;
     align-items: flex-end;
     display: flex;
     justify-content: center;
-    margin: 8px;
-}
-
-input {
-    height: 26px;
+    margin: 15px;
 }

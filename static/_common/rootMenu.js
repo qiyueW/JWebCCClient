@@ -5,12 +5,6 @@ const template = [{
     }, {
         label: '代码生成器配置',
         submenu: [{
-                label: '服务器配置',
-                click() {
-                    windowsTools.createRootConfigServer();
-                }
-            },
-            {
                 label: '项目设置',
                 click() {
                     windowsTools.createRootConfigProject();
@@ -20,6 +14,13 @@ const template = [{
                 label: '项目键值对设置',
                 click() {
                     windowsTools.createRootConfigProjectMap();
+                }
+            },
+            { type: 'separator' },
+            {
+                label: '服务器配置',
+                click() {
+                    windowsTools.createRootConfigServer();
                 }
             }
         ]

@@ -13,7 +13,9 @@ exports.system_config_server_userPassword = 'config.server.userPassword' //服�
 var obj = {
     real: 'config.project.real', //项目真实 路径
     regexMapPath: 'config.project.regex_path', //你的表达式 绑定 【{真实路径+你的路径}】  这是一个数组。
-    regexMapPath_objKey: 'config.project.regex_path_key',
 }
-
+var projectMapConfigDBKey = {
+    maps: 'config.project_map.keyvalue', //项目用到的键值对(数据组) var xx=[];  key=xxxxxxxxxxxxxxx
+}
 exports.projectConfigDBKey = obj;
+exports.projectMapConfigDBKey = projectMapConfigDBKey; //

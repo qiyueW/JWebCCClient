@@ -31,7 +31,7 @@ exports.createRootConfigProject = function() { //创建子窗口-项目配置
     private_createRootConfigServer(winConstVar.key_root_config_project, '项目配置', '_config/projectConfig.html');
 };
 exports.createRootConfigProjectMap = function() { //创建子窗口-项目键值对配置
-    private_createRootConfigServer(winConstVar.key_root_config_projectMap, '项目键值对配置', '_config/projectConfig.html');
+    private_createRootConfigServer(winConstVar.key_root_config_projectMap, '项目键值对配置', '_config/projectMapConfig.html');
 };
 
 //--------------------------------------------------------------------------------

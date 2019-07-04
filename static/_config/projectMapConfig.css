@@ -29,21 +29,6 @@ body {
     margin: 8px;
 }
 
-table tbody tr {
-    height: 28px;
-    margin: 0px;
-    padding: 0px;
-}
-
-.td1 {
-    width: 60%
-}
-
-.td2 {
-    width: 40%;
-}
-
-table tbody tr td input {
+input {
     height: 26px;
-    width: 100%;
 }

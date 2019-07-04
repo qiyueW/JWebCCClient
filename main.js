@@ -7,8 +7,11 @@ var rootMenu = require('./static/_common/rootMenu.js') //用户框架的 菜单
 var wins = require('./static/_common/win/winMain.js') //窗口集中管理
 var lowdb = require('./static/_common/_lowdb/serverConfigDBMain.js');
 var lowdb_project = require('./static/_common/_lowdb/projectConfigDBMain.js');
-
-
+var lowdb_projectMap = require('./static/_common/_lowdb/projectMapConfigDBMain.js');
+var login = require('./static/pagesApp/login/loginMain')
+if (login.login() != 1) {
+    // return;
+}
 wins.setBrowserWindow(BrowserWindow); //初始化
 
 // 保持对window对象的全局引用，如果不这么做的话，当JavaScript对象被
@@ -20,10 +23,11 @@ function createWindow() {
     wins.regColseEventIPC(ipcMain)
     lowdb.regIPC_configDB(ipcMain)
     lowdb_project.regIPC_configDB(ipcMain)
+    lowdb_projectMap.regIPC_configDB(ipcMain)
         //注册菜单
     rootMenu.f_regMenu(Menu, wins)
         // // 打开开发者工具
-        // win.webContents.openDevTools()
+    win.webContents.openDevTools()
 }
 
 // Electron 会在初始化后并准备

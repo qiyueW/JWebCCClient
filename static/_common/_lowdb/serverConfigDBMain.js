@@ -40,7 +40,7 @@ exports.isHasData_noEmpty = isHasData_noEmpty
 exports.get = get;
 exports.set = set;
 exports.setAll = setAll;
-
+exports.finalVar = finalVar;
 
 
 
