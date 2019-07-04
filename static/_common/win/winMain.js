@@ -50,8 +50,8 @@ function private_createRootConfigServer(key, title, url) {
             title,
             title,
             frame: false,
-            width: 700,
-            height: 400,
+            width: 800,
+            height: 600,
             webPreferences: {
                 nodeIntegration: true
             }

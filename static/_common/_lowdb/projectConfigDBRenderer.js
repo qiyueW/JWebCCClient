@@ -3,19 +3,18 @@ const finalVar = require('./_lowdbConst.js')
 const key = require('../Key.js')
 
 
-function saveServer_configDB(url, account, password) {
+function saveProject_configDB(realPath, regexAndPath) {
     var obj = {}
-    obj[finalVar.system_config_server_url] = url;
-    obj[finalVar.system_config_server_userAccount] = account;
-    obj[finalVar.system_config_server_userPassword] = password;
-    return ipcRenderer.sendSync(key.ipcKey_configDBMain_save, obj)
+    obj[finalVar.projectConfigDBKey.real] = realPath;
+    obj[finalVar.projectConfigDBKey.regexMapPath] = regexAndPath;
+    return ipcRenderer.sendSync(key.ipcKey_configDBMain_save_project, obj)
 }
 
-function getServer_configDB() {
-    var obj = ipcRenderer.sendSync(key.ipcKey_configDBMain_get, '');
+function getproject_configDB() {
+    var obj = ipcRenderer.sendSync(key.ipcKey_configDBMain_get_project, '');
     return obj;
 }
 
-exports.saveServer_configDB = saveServer_configDB
-exports.getServer_configDB = getServer_configDB
+exports.saveProject_configDB = saveProject_configDB
+exports.getproject_configDB = getproject_configDB
 exports.finalVar = finalVar

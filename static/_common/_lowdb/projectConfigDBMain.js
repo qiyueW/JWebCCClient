@@ -27,7 +27,7 @@ function get(key) {
     return obj;
 }
 
-exports.isHasData_noEmpty = isHasData_noEmpty
+
 exports.get = get;
 exports.set = set;
 exports.setAll = setAll;
@@ -44,12 +44,12 @@ exports.regIPC_configDB = function(ipcMain) {
         return;
     }
     regCount++;
-    ipcMain.on(key.ipcKey_configDBMain_save, (event, arg) => {
+    ipcMain.on(key.ipcKey_configDBMain_save_project, (event, arg) => {
         setAll(arg)
         event.returnValue = true
     });
 
-    ipcMain.on(key.ipcKey_configDBMain_get, (event, arg) => {
+    ipcMain.on(key.ipcKey_configDBMain_get_project, (event, arg) => {
         event.returnValue = get();
     });
 
