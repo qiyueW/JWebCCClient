@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 
 <head>
-    <title>服务器配置</title>
-    <link rel="stylesheet" href="../static/_framework/uikit/dist/css/uikit.min.css" />
+    <title>登陆</title>
+    <link rel="stylesheet" href="../../static/_framework/uikit/dist/css/uikit.min.css" />
     <link rel="stylesheet" href="../../static/pagesApp/login/login.css" />
-    <script src="../static/_framework/uikit/dist/js/uikit.min.js"></script>
-    <script src="../static/_framework/uikit/dist/js/components/notification.min.js"></script>
-    <script src="../static/_framework/uikit/dist/js/uikit-icons.min.js"></script>
+    <script src="../../static/_framework/uikit/dist/js/uikit.min.js"></script>
+    <script src="../../static/_framework/uikit/dist/js/components/notification.min.js"></script>
+    <script src="../../static/_framework/uikit/dist/js/uikit-icons.min.js"></script>
     <!-- 模块js -->
-    <script src="../../static/pagesApp/login/loginMain.js"></script>
+    <script src="../../static/pagesApp/login/login.js"></script>
 </head>
 
 
 <body>
-    <div class="uk-tile uk-text-center uk-tile-secondary">服务器参数配置</div>
+    <div class="uk-tile uk-text-center uk-tile-secondary">登录</div>
     <div style="height: 20px;"></div>
 
     <div class="formCenter">
@@ -32,7 +32,8 @@
     </div>
 
     <div class="layout_buttom">
-        <button class="uk-button uk-button-primary" onclick="saveConfig();">登陆</button>
+        <button class="uk-button uk-button-default" onclick="saveConfig();">保存</button>
+        <button class="uk-button uk-button-primary" onclick="login();">登陆</button>
     </div>
 </body>
 

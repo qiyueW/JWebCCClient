@@ -1,9 +1,9 @@
 {
   "config": {
     "server": {
-      "url": "https://nuwait.cn",
-      "userAccount": "wangchunzi",
-      "userPassword": "123"
+      "url": "",
+      "userAccount": "",
+      "userPassword": ""
     },
     "project": {
       "real": "",

@@ -2,47 +2,27 @@ const http = require('http');
 const https = require('https');
 const querystring = require('querystring');
 
+var JSESSIONID=null;
 
-// var request = {
-//     post: function(protocol, host, port, url, data) {
-//         return this.request(protocol, host, port, 'post', url, null, data);
-//     },
-//     postByJson: function(protocol, host, port, url, data) {
-//         return this.request(protocol, host, port, 'post', url, 'application/json', data);
-//     },
-//     get: function(protocol, host, port, url, data) {
-//         return this.request(protocol, host, port, 'get', url, null, data);
-//     },
-//     getByJson: function(protocol, host, port, url, data) {
-//         return this.request(protocol, host, port, 'get', url, 'application/json', data);
-//     },
-//     request: function(protocol, host, port, postOrGet, url, contentType, data) {
-//         if (protocol == 'https') {
-//             return f_https_Request(protocol, host, port, postOrGet, url, contentType, data);
-//         }
-//         return f_http_Request(protocol, host, port, postOrGet, url, contentType, data);
-//     }
-// }
-
-function post(protocol, host, port, url, data) {
-    return this.request(protocol, host, port, 'post', url, null, data);
+function post(protocol, host, port, url, data,f_result) {
+    return this.request(protocol, host, port, 'post', url, null, data,f_result);
 }
 
-function postByJson(protocol, host, port, url, data) {
-    return this.request(protocol, host, port, 'post', url, 'application/json', data);
+function postByJson(protocol, host, port, url, data,f_result) {
+    return this.request(protocol, host, port, 'post', url, 'application/json', data,f_result);
 }
 
-function get(protocol, host, port, url, data) {
-    return this.request(protocol, host, port, 'get', url, null, data);
+function get(protocol, host, port, url, data,f_result) {
+    return this.request(protocol, host, port, 'get', url, null, data,f_result);
 }
 
-function getByJson(protocol, host, port, url, data) {
-    return this.request(protocol, host, port, 'get', url, 'application/json', data);
+function getByJson(protocol, host, port, url, data,f_result) {
+    return this.request(protocol, host, port, 'get', url, 'application/json', data,f_result);
 }
 
 var jsonTypeRegex = /^[?_:0-9a-zA-z./ ]+json[?_:0-9a-zA-z./ ]+$/i
 
-function request(protocol, host, port, postOrGet, url, contentType, data) {
+function request(protocol, host, port, postOrGet, url, contentType, data,f_result) {
     if (typeof data == 'object') { //如果data是对象
         if (jsonTypeRegex.test(contentType)) {
             data = JSON.stringify(data);
@@ -52,9 +32,9 @@ function request(protocol, host, port, postOrGet, url, contentType, data) {
     }
 
     if (protocol == 'https:') {
-        return f_https_Request(protocol, host, port, postOrGet, url, contentType, data);
+        return f_https_Request(protocol, host, port, postOrGet, url, contentType, data,f_result);
     }
-    return f_http_Request(protocol, host, port, postOrGet, url, contentType, data);
+    return f_http_Request(protocol, host, port, postOrGet, url, contentType, data,f_result);
 }
 
 exports.post = post;
@@ -72,7 +52,7 @@ exports.request = request;
  * @param {String} contentType 内容类型，默认是'application/x-www-form-urlencoded; charset=UTF-8'
  * @param {String} data 带给服务器的参数
  */
-function f_http_Request(protocol, host, port, postOrGet, url, contentType, data) {
+function f_http_Request(protocol, host, port, postOrGet, url, contentType, data,f_result) {
     const options = {
         protocol: protocol,
         hostname: host,
@@ -80,22 +60,31 @@ function f_http_Request(protocol, host, port, postOrGet, url, contentType, data)
         path: url,
         method: postOrGet ? postOrGet : 'get',
         headers: {
-            'Content-Type': contentType ? contentType : 'application/x-www-form-urlencoded; charset=UTF-8'
+            'Content-Type': contentType ? contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+            Cookie:JSESSIONID?JSESSIONID:''
         }
     };
     const req = http.request(options, (res) => {
-        console.log(`response status: ${res.statusCode}`);
-        console.log(`response header: ${JSON.stringify(res.headers)}`);
-        res.setEncoding('utf8');
+        // console.log(`response status: ${res.statusCode}`);
+        // console.log(`response header: ${JSON.stringify(res.headers)}`);
+        res.setEncoding('utf8')
+        var text=''
         res.on('data', (chunk) => {
-            console.log(`response body: ${chunk}`);
-        });
+            text=text+chunk
+        })
         res.on('end', () => {
-            console.log('over!');
-        });
-    });
+            if(!JSESSIONID){
+             JSESSIONID=res.headers['set-cookie']
+            }
+            if(f_result){
+                f_result(text,1)
+            }
+        })
+    })
     req.on('error', err => {
-        console.log(err);
+        if(f_result){
+            f_result(text,-1)
+        }
     });
     req.write(data)
     req.end();
@@ -112,7 +101,7 @@ function f_http_Request(protocol, host, port, postOrGet, url, contentType, data)
  * @param {String} contentType 内容类型，默认是'application/x-www-form-urlencoded; charset=UTF-8'
  * @param {String} data 带给服务器的参数
  */
-function f_https_Request(protocol, host, port, postOrGet, url, contentType, data) {
+function f_https_Request(protocol, host, port, postOrGet, url, contentType, data,f_result) {
     const options = {
         protocol: protocol,
         hostname: host,
@@ -120,23 +109,33 @@ function f_https_Request(protocol, host, port, postOrGet, url, contentType, data
         path: url,
         method: postOrGet ? postOrGet : 'get',
         headers: {
-            'Content-Type': contentType ? contentType : 'application/x-www-form-urlencoded; charset=UTF-8'
+            'Content-Type': contentType ? contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+            Cookie:JSESSIONID?JSESSIONID:''
         }
-    };
+    }
     const req = https.request(options, (res) => {
-        console.log(`response status: ${res.statusCode}`);
-        console.log(`response header: ${JSON.stringify(res.headers)}`);
-        res.setEncoding('utf8');
+        // console.log(`response status: ${res.statusCode}`);
+        // console.log(`response header: ${JSON.stringify(res.headers)}`);
+        res.setEncoding('utf8')
+        var text=''
         res.on('data', (chunk) => {
-            console.log(`response body: ${chunk}`);
-        });
+            text=text+chunk
+        })
         res.on('end', () => {
-            console.log('over!');
-        });
-    });
+            if(!JSESSIONID){
+             JSESSIONID=res.headers['set-cookie']
+            }
+            if(f_result){
+                f_result(text,1)
+            }
+        })
+    })
     req.on('error', err => {
-        console.log(err);
+        if(f_result){
+            f_result(text,-1)
+        }
     });
     req.write(data)
     req.end();
+
 }

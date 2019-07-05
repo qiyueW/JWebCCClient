@@ -34,7 +34,8 @@ module.exports = {
     /**
      * 窗口 ipc 关闭通信
      */
-    ipcKey_winMain_closeSystemWIN: 'winMain_closeSystemWIN'
+    ipcKey_winMain_closeSystemWIN: 'winMain_closeSystemWIN',
 
-
+    ipcKey_loginMain_login: 'loginMain_login',
+    ipcKey_loginMain_out: 'loginMain_out'
 }

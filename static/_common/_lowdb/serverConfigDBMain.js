@@ -63,4 +63,4 @@ exports.regIPC_configDB = function(ipcMain) {
     });
 
 
-};
+}

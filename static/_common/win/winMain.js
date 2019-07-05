@@ -10,7 +10,7 @@ exports.setBrowserWindow = function(obj) {
 }
 
 //--------------------------------------------------------------------------------
-exports.createRoot = function() { //根
+exports.createRoot = function(rootPage) { //根
     if (!WIN[winConstVar.key_root]) {
         private_createWindow(winConstVar.key_root, {
             width: 800,
@@ -18,7 +18,7 @@ exports.createRoot = function() { //根
             webPreferences: {
                 nodeIntegration: true
             }
-        }, 'index.html');
+        },rootPage);
     }
     return WIN[winConstVar.key_root];
 };
@@ -47,8 +47,7 @@ function private_createRootConfigServer(key, title, url) {
     if (!WIN[key]) {
         private_createWindow(key, {
             parent: WIN[winConstVar.key_root],
-            title,
-            title,
+            title: title,
             frame: false,
             width: 800,
             height: 600,
@@ -58,7 +57,7 @@ function private_createRootConfigServer(key, title, url) {
         }, url);
     }
     // // 打开开发者工具
-    // WIN[key].webContents.openDevTools()
+    WIN[key].webContents.openDevTools()
     return WIN[key];
 }
 //窗口
@@ -67,11 +66,7 @@ function private_createWindow(winkey, options, url, f_fun) {
     WIN[winkey] = new BrowserWindow(options)
 
     // 加载index.html文件
-    if ("12".match(/^http:[\w]+$/)) {
-
-    } else {
-        WIN[winkey].loadFile(url)
-    }
+    WIN[winkey].loadFile(url)
     // 当 window 被关闭，这个事件会被触发。
     WIN[winkey].on('closed', () => {
         if (f_fun) {
