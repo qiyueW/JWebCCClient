@@ -1,8 +1,8 @@
 require('electron-connect').client.create();
 
-const win = require('../static/_common/win/winRenderer.js');
-const dao = require('../static/_common/_lowdb/projectConfigDBRenderer.js');
-const uiTool = require('../static/_common/tools/uiTools.js');
+const win = require('../../../module/_common/win/winRenderer');
+const dao = require('../../_common/lowdb/config/configDBRenderer');
+const uiTool = require('../../../_tools/uiTools');
 var $ = require("jquery");
 //------------------------------------------------------------
 //保存

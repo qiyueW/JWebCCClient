@@ -1,5 +1,5 @@
 const { ipcRenderer } = require('electron');
-const finalVar = require('../../_common/_lowdb/_lowdbConst')
+const finalVar = require('../../../_key/lowdb/lowdbKey')
 const key = require('../../_common/Key')
 
 

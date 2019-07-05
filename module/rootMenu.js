@@ -1,4 +1,4 @@
-var windowsTools;
+var wins;
 const template = [{
         label: '菜单',
         submenu: []
@@ -7,20 +7,20 @@ const template = [{
         submenu: [{
                 label: '项目设置',
                 click() {
-                    windowsTools.createRootConfigProject();
+                    wins.createWindow.config.project();
                 }
             },
             {
                 label: '项目键值对设置',
                 click() {
-                    windowsTools.createRootConfigProjectMap();
+                    wins.createWindow.config.projectMap();
                 }
             },
             { type: 'separator' },
             {
                 label: '服务器配置',
                 click() {
-                    windowsTools.createRootConfigServer();
+                    wins.createWindow.config.server();
                 }
             }
         ]
@@ -29,7 +29,7 @@ const template = [{
 ]
 
 function f_regMenu(m, tools) {
-    windowsTools = tools;
+    wins = tools;
     const menu = m.buildFromTemplate(template)
     m.setApplicationMenu(menu)
 }

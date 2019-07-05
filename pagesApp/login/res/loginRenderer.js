@@ -1,14 +1,14 @@
 const { ipcRenderer } = require('electron');
-const finalVar = require('./_lowdbConst.js')
-const key = require('../Key.js')
+const finalVar = require('../../../_key/lowdb/lowdbKey')
+const key = require('../../../resMain/_common/Key')
 
 
-function saveServer_configDB(url, account, password) {
+function login(obj) {
     var obj = {}
     obj[finalVar.system_config_server_url] = url;
     obj[finalVar.system_config_server_userAccount] = account;
     obj[finalVar.system_config_server_userPassword] = password;
-    return ipcRenderer.sendSync(key.ipcKey_configDBMain_save, obj)
+    return ipcRenderer.sendSync(key.ipcKey_loginMain_login, obj)
 }
 
 function getServer_configDB() {
@@ -16,6 +16,6 @@ function getServer_configDB() {
     return obj;
 }
 
-exports.saveServer_configDB = saveServer_configDB
+exports.login = login
 exports.getServer_configDB = getServer_configDB
 exports.finalVar = finalVar

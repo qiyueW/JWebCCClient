@@ -3,12 +3,11 @@ const client = require('electron-connect').client;
 
 //electron框架
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
-var rootMenu = require('./static/_common/rootMenu.js') //用户框架的 菜单
-var wins = require('./static/_common/win/winMain.js') //窗口集中管理
-var lowdb = require('./static/_common/_lowdb/serverConfigDBMain.js');
-var lowdb_project = require('./static/_common/_lowdb/projectConfigDBMain.js');
-var lowdb_projectMap = require('./static/_common/_lowdb/projectMapConfigDBMain.js');
-var login = require('./static/pagesApp/login/loginMain')
+var rootMenu = require('./module/rootMenu') //用户框架的 菜单
+
+var wins = require('./resMain/winMain') //窗口集中管理
+var configDB = require('./resMain/configDBMain');
+var login = require('./resMain/loginMain')
 
 
 wins.setBrowserWindow(BrowserWindow); //初始化
@@ -16,29 +15,41 @@ wins.setBrowserWindow(BrowserWindow); //初始化
 // 保持对window对象的全局引用，如果不这么做的话，当JavaScript对象被
 // 垃圾回收的时候，window对象将会自动的关闭
 let win
-// Electron 会在初始化后并准备
-// 创建浏览器窗口时，调用这个函数。
-// 部分 API 在 ready 事件触发后才能使用。
+    // Electron 会在初始化后并准备
+    // 创建浏览器窗口时，调用这个函数。
+    // 部分 API 在 ready 事件触发后才能使用。
 app.on('ready', createWindow)
+
 function createWindow() {
-    login.login(function(d,t){
-        if(d=='1'){
-            win = wins.createRoot('index.html');
-        }else{
-            win=wins.createRoot('./pagesApp/login/login.html')
-        }
+    win = wins.createWindow.root('index.html');
+    wins.regColseEventIPC(ipcMain)
+    configDB.regIPC_configDB(ipcMain)
+    login.regIPC_login(ipcMain, win)
 
-        wins.regColseEventIPC(ipcMain)
-        lowdb.regIPC_configDB(ipcMain)
-        lowdb_project.regIPC_configDB(ipcMain)
-        lowdb_projectMap.regIPC_configDB(ipcMain)
-        login.regIPC_login(ipcMain,win)
-        //注册菜单
-        rootMenu.f_regMenu(Menu, wins)
+    //注册菜单
+    rootMenu.f_regMenu(Menu, wins)
 
-        // 打开开发者工具
-        win.webContents.openDevTools()
-    })
+    // 打开开发者工具
+    win.webContents.openDevTools()
+
+    // login.login(function(d, t) {
+    //     if (d == '1') {
+    //         win = wins.createWindow.root('index.html');
+    //     } else {
+    //         win = wins.createWindow.root('index.html');
+    //         // win = wins.createWindow.root('./pagesApp/login/login.html')
+    //     }
+
+    //     wins.regColseEventIPC(ipcMain)
+    //     configDB.regIPC_configDB(ipcMain)
+    //     login.regIPC_login(ipcMain, win)
+
+    //     //注册菜单
+    //     rootMenu.f_regMenu(Menu, wins)
+
+    //     // 打开开发者工具
+    //     win.webContents.openDevTools()
+    // })
 
 }
 
