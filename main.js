@@ -21,35 +21,35 @@ let win
 app.on('ready', createWindow)
 
 function createWindow() {
-    win = wins.createWindow.root('index.html');
-    wins.regColseEventIPC(ipcMain)
-    configDB.regIPC_configDB(ipcMain)
-    login.regIPC_login(ipcMain, win)
+    // win = wins.createWindow.root('index.html');
+    // wins.regColseEventIPC(ipcMain)
+    // configDB.regIPC_configDB(ipcMain)
+    // login.regIPC_login(ipcMain, win)
 
-    //注册菜单
-    rootMenu.f_regMenu(Menu, wins)
+    // //注册菜单
+    // rootMenu.f_regMenu(Menu, wins)
 
-    // 打开开发者工具
-    win.webContents.openDevTools()
+    // // 打开开发者工具
+    // win.webContents.openDevTools()
 
-    // login.login(function(d, t) {
-    //     if (d == '1') {
-    //         win = wins.createWindow.root('index.html');
-    //     } else {
-    //         win = wins.createWindow.root('index.html');
-    //         // win = wins.createWindow.root('./pagesApp/login/login.html')
-    //     }
+    login.login(function(d, t) {
+        if (d == '1') {
+            win = wins.createWindow.root('index.html');
+        } else {
+            win = wins.createWindow.root('index.html');
+            win = wins.createWindow.root('./pagesApp/login/login.html')
+        }
 
-    //     wins.regColseEventIPC(ipcMain)
-    //     configDB.regIPC_configDB(ipcMain)
-    //     login.regIPC_login(ipcMain, win)
+        wins.regColseEventIPC(ipcMain)
+        configDB.regIPC_configDB(ipcMain)
+        login.regIPC_login(ipcMain, win)
 
-    //     //注册菜单
-    //     rootMenu.f_regMenu(Menu, wins)
+        //注册菜单
+        rootMenu.f_regMenu(Menu, wins)
 
-    //     // 打开开发者工具
-    //     win.webContents.openDevTools()
-    // })
+        // 打开开发者工具
+        win.webContents.openDevTools()
+    })
 
 }
 

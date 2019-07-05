@@ -2,7 +2,7 @@ require('electron-connect').client.create();
 
 const dao = require('../../../static/_common/_lowdb/serverConfigDBRenderer.js');
 const uiTool = require('../../../static/_common/tools/uiTools.js');
-const loginTool = require('./loginRenderer.js/index.js') ///../static/pagesApp/
+const loginTool = require('./loginRenderer.js') ///../static/pagesApp/
     //------------------------------------------------------------
     //保存
 function saveConfig() {

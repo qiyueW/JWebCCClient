@@ -1,4 +1,4 @@
-const configDao = require('../module/_common/lowdb/config/configDBRenderer');
+const configDao = require('./configDBMain');
 const hostTool = require('../_tools/serverHostTool');
 const reqTool = require('../_tools/requestTool');
 const lowdbKey = require('../_key/lowdb/lowdbKey')
@@ -11,10 +11,10 @@ function login(f_result, obj) {
     if (!obj) {
         obj = configDao.getServer()
     }
-    var hostName = obj[lowdbKey.lowModule.lowdb.config.server.url]
+    var hostName = obj[lowdbKey.config.server.url]
     var data = {}
-    var account = obj[lowdbKey.lowModule.lowdb.config.server.account]; //账号
-    var password = obj[lowdbKey.lowModule.lowdb.config.server.password] //密码
+    var account = obj[lowdbKey.config.server.account]; //账号
+    var password = obj[lowdbKey.config.server.password] //密码
     if (!hostName || !account || !password) {
         f_result('-2', -1)
         return; //检查不通过
@@ -50,7 +50,7 @@ exports.regIPC_login = function(ipcMain, rootWin) {
     });
 
     ipcMain.on(key.ipcKey.userSession.out, (event, arg) => {
-        event.returnValue = get();
+        event.returnValue = ''
     });
 
 

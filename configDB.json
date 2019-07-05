@@ -2,8 +2,8 @@
   "config": {
     "server": {
       "url": "https://nuwait.cn",
-      "account": "123123",
-      "password": "123"
+      "account": "wangchunzi",
+      "password": "12345678"
     },
     "project": {
       "real": "工",
@@ -39,7 +39,7 @@
     "projectMap": {
       "kv": [
         {
-          "k1": "e",
+          "k1": "e工",
           "k2": "金"
         },
         {
