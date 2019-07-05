@@ -1,6 +1,6 @@
 const http = require('http');
 const https = require('https');
-
+const querystring = require('querystring');
 
 
 // var request = {
@@ -40,7 +40,17 @@ function getByJson(protocol, host, port, url, data) {
     return this.request(protocol, host, port, 'get', url, 'application/json', data);
 }
 
+var jsonTypeRegex = /^[?_:0-9a-zA-z./ ]+json[?_:0-9a-zA-z./ ]+$/i
+
 function request(protocol, host, port, postOrGet, url, contentType, data) {
+    if (typeof data == 'object') { //如果data是对象
+        if (jsonTypeRegex.test(contentType)) {
+            data = JSON.stringify(data);
+        } else {
+            data = querystring.stringify(data);
+        }
+    }
+
     if (protocol == 'https:') {
         return f_https_Request(protocol, host, port, postOrGet, url, contentType, data);
     }

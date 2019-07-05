@@ -21,7 +21,7 @@ function login() {
     var sendData = 'account=' + account + '&password=' + password
     var hostObject = hostTool.formatServerHostUrl(hostName);
     console.log(hostObject);
-    reqTool.post(hostObject.protocol, hostObject.host, hostObject.port, requestUrl, sendData);
+    reqTool.post(hostObject.protocol, hostObject.host, hostObject.port, requestUrl, data);
 }
 
 exports.login = login;
