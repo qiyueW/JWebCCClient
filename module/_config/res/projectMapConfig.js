@@ -1,8 +1,8 @@
 require('electron-connect').client.create();
 
-const win = require('../static/_common/win/winRenderer.js');
-const dao = require('../static/_common/_lowdb/projectMapConfigDBRenderer.js');
-const uiTool = require('../static/_common/tools/uiTools.js');
+const win = require('../../../module/_common/win/winRenderer');
+const dao = require('../../_common/lowdb/config/configDBRenderer');
+const uiTool = require('../../../_tools/uiTools');
 var $ = require("jquery");
 //------------------------------------------------------------
 //保存
@@ -19,7 +19,7 @@ function saveConfig() {
             });
         }
     }
-    if (dao.saveProjectMap_configDB(obj)) {
+    if (dao.saveProjectMap(obj)) {
         uiTool.f_notification_save_ok();
     } else {
         uiTool.f_notification_save_err();
@@ -27,7 +27,7 @@ function saveConfig() {
 
 }
 //初始化
-window.onload = function() {
+function onload() {
     var content = "";
     for (var i = 0; i < 20; i++) {
         content = content + row(i);
@@ -40,14 +40,18 @@ window.onload = function() {
             '</div>'
     }
     $('#tbodyContent').html(content);
-    var obj = dao.getProjectMap_configDB();
-    var keyVar = dao.finalVar;
+    var obj = dao.getProjectMap()
+    var lowdbKey = dao.lowdbKey;
 
     var forObj;
-    for (var i = 0; i < obj[keyVar.projectMapConfigDBKey.maps].length; i++) {
-        forObj = obj[keyVar.projectMapConfigDBKey.maps][i];
+    for (var i = 0; i < obj[lowdbKey.config.projectMap.kv].length; i++) {
+        forObj = obj[lowdbKey.config.projectMap.kv][i];
         uiTool.setValueById('r' + i + "_1", forObj.k1);
         uiTool.setValueById('r' + i + "_2", forObj.k2);
     }
 
 }
+
+exports.saveConfig = saveConfig
+exports.onload = onload
+exports.f_close_root_config_projectMap = win.f_close_root_config_projectMap

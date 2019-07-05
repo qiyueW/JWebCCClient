@@ -21,7 +21,7 @@ function saveConfig() {
     }
     var realpath = uiTool.getValueById('realpathID');
 
-    if (dao.saveProject_configDB(realpath, obj)) {
+    if (dao.saveProject(realpath, obj)) {
         uiTool.f_notification_save_ok();
     } else {
         uiTool.f_notification_save_err();
@@ -29,7 +29,7 @@ function saveConfig() {
 
 }
 //初始化
-window.onload = function() {
+function onload() {
     var content = "";
     for (var i = 0; i < 20; i++) {
         content = content + row(i);
@@ -42,15 +42,18 @@ window.onload = function() {
             '</div>'
     }
     $('#tbodyContent').html(content);
-    var obj = dao.getproject_configDB();
-    var keyVar = dao.finalVar;
+    var obj = dao.getProject()
+    var lowdbKey = dao.lowdbKey;
 
-    uiTool.setValueById('realpathID', obj[keyVar.projectConfigDBKey.real]);
+    uiTool.setValueById('realpathID', obj[lowdbKey.config.project.real]);
     var forObj;
-    for (var i = 0; i < obj[keyVar.projectConfigDBKey.regexMapPath].length; i++) {
-        forObj = obj[keyVar.projectConfigDBKey.regexMapPath][i];
+    for (var i = 0; i < obj[lowdbKey.config.project.regexMapPath].length; i++) {
+        forObj = obj[lowdbKey.config.project.regexMapPath][i];
         uiTool.setValueById('r' + i + "_1", forObj.k1);
         uiTool.setValueById('r' + i + "_2", forObj.k2);
     }
 
 }
+exports.saveConfig = saveConfig
+exports.onload = onload
+exports.f_close_root_config_project = win.f_close_root_config_project
