@@ -1,12 +1,14 @@
 require('electron-connect').client.create();
 
-const dao = require('../../../static/_common/_lowdb/serverConfigDBRenderer.js');
-const uiTool = require('../../../static/_common/tools/uiTools.js');
-const loginTool = require('./loginRenderer.js') ///../static/pagesApp/
+const dao = require('../../_common/lowdb/config/configDBRenderer');
+var lowdbKey = dao.lowdbKey;
+
+const uiTool = require('../../../_tools/uiTools');
+const loginTool = require('../res/loginRenderer') ///../static/pagesApp/
     //------------------------------------------------------------
     //保存
 function saveConfig() {
-    if (dao.saveServer_configDB(
+    if (dao.saveServer(
             uiTool.getValueById('configURL'), uiTool.getValueById('configAccount'), uiTool.getValueById('configPassword')
         )) {
         uiTool.f_notification_save_ok();
@@ -16,19 +18,29 @@ function saveConfig() {
 }
 
 function login() {
-    var obj = {
-        configURL: uiTool.getValueById('configURL'),
-        configAccount: uiTool.getValueById('configAccount'),
-        configPassword: uiTool.getValueById('configPassword')
+    var obj = {}
+    obj[lowdbKey.config.server.url] = uiTool.getValueById('configURL')
+    obj[lowdbKey.config.server.account] = uiTool.getValueById('configAccount')
+    obj[lowdbKey.config.server.password] = uiTool.getValueById('configPassword')
+
+    if (loginTool.login(obj)) {
+        uiTool.notification.login_ok();
+    } else {
+        uiTool.notification.login_err();
     }
-    loginTool.login(obj)
-    console.log(obj);
+
 }
 //初始化
-window.onload = function() {
-    var obj = dao.getServer_configDB();
-    var finalVar = dao.finalVar;
-    uiTool.setValueById('configURL', obj[finalVar.system_config_server_url]);
-    uiTool.setValueById('configAccount', obj[finalVar.system_config_server_userAccount]);
-    uiTool.setValueById('configPassword', obj[finalVar.system_config_server_userPassword]);
+function onload() {
+    var obj = dao.getServer()
+    var lowdbKey = dao.lowdbKey
+    console.log(obj)
+    uiTool.setValueById('configURL', obj[lowdbKey.config.server.url]);
+    uiTool.setValueById('configAccount', obj[lowdbKey.config.server.account]);
+    uiTool.setValueById('configPassword', obj[lowdbKey.config.server.password]);
 }
+
+exports.login = login
+exports.saveConfig = saveConfig
+exports.onload = onload
+exports.lowdbKey = lowdbKey

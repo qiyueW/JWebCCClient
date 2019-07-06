@@ -10,20 +10,21 @@ exports.setBrowserWindow = function(obj) {
 
 exports.createWindow = {
     root: function(rootPage) { //根
-        if (!WIN[winKey.key_root]) {
-            private_createWindow(winKey.key_root, {
+        if (!WIN[winKey.objects.root]) {
+            private_createWindow(winKey.objects.root, {
                 width: 800,
                 height: 600,
+                show: false,
                 webPreferences: {
                     nodeIntegration: true
                 }
             }, rootPage);
         }
-        return WIN[winKey.key_root];
+        return WIN[winKey.objects.root];
     },
     config: {
         server: function() { //创建子窗口-服务器配置
-            private_createRootConfigServer(winKey.objects.config.server, '服务器配置', 'module/_config/serverConfig.html'); //winKey.win.objects.config.server
+            private_createRootConfigServer(winKey.objects.config.server, '服务器配置', 'module/_config/serverConfig.html');
         },
         project: function() { //创建子窗口-项目配置
             private_createRootConfigServer(winKey.objects.config.project, '项目配置', 'module/_config/projectConfig.html');
@@ -31,13 +32,40 @@ exports.createWindow = {
         projectMap: function() { //创建子窗口-项目键值对配置
             private_createRootConfigServer(winKey.objects.config.projectMap, '项目键值对配置', 'module/_config/projectMapConfig.html');
         }
+    },
+    usersession: {
+        login: function() {
+            private_createRootConfigServer(winKey.objects.userSession.login, '登陆', './module/login/login.html')
+        }
     }
 }
+
+function closeWin(key) {
+    if (WIN[key]) {
+        WIN[key].close();
+    }
+}
+
+function showWin(key) {
+    if (WIN[key]) {
+        WIN[key].show()
+    }
+}
+
+function hideWin(key) {
+    if (WIN[key]) {
+        WIN[key].hide()
+    }
+}
+
+exports.closeWin = closeWin
+exports.showWin = showWin
+exports.hideWin = hideWin
 
 //--------------------------------------------------------------------------------
 exports.regColseEventIPC = function(ipcMain) {
     ipcMain.on(key.ipcKey.window.close, (event, arg) => {
-        WIN[arg].close();
+        closeWin(arg);
     })
 }
 
@@ -58,6 +86,7 @@ function private_createRootConfigServer(key, title, url) {
     }
     // // 打开开发者工具
     WIN[key].webContents.openDevTools()
+    console.log('create ok!' + key + '       ' + WIN[key])
     return WIN[key];
 }
 //窗口

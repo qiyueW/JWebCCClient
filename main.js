@@ -20,37 +20,24 @@ let win
     // 部分 API 在 ready 事件触发后才能使用。
 app.on('ready', createWindow)
 
-function createWindow() {
-    // win = wins.createWindow.root('index.html');
-    // wins.regColseEventIPC(ipcMain)
-    // configDB.regIPC_configDB(ipcMain)
-    // login.regIPC_login(ipcMain, win)
+async function createWindow() {
+    var rs = await login.login()
+    win = wins.createWindow.root('index.html');
+    if (rs == '1') {
+        win.show();
+    } else {
+        wins.createWindow.usersession.login();
+    }
+    // 注册ipc监听
+    wins.regColseEventIPC(ipcMain)
+    configDB.regIPC_configDB(ipcMain)
+    login.regIPC_login(ipcMain, win)
 
-    // //注册菜单
-    // rootMenu.f_regMenu(Menu, wins)
+    //注册菜单
+    rootMenu.f_regMenu(Menu, wins)
 
-    // // 打开开发者工具
-    // win.webContents.openDevTools()
-
-    login.login(function(d, t) {
-        if (d == '1') {
-            win = wins.createWindow.root('index.html');
-        } else {
-            win = wins.createWindow.root('index.html');
-            win = wins.createWindow.root('./pagesApp/login/login.html')
-        }
-
-        wins.regColseEventIPC(ipcMain)
-        configDB.regIPC_configDB(ipcMain)
-        login.regIPC_login(ipcMain, win)
-
-        //注册菜单
-        rootMenu.f_regMenu(Menu, wins)
-
-        // 打开开发者工具
-        win.webContents.openDevTools()
-    })
-
+    // 打开开发者工具
+    win.webContents.openDevTools()
 }
 
 

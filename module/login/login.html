@@ -3,12 +3,17 @@
 <head>
     <title>登陆</title>
     <link rel="stylesheet" href="../../static/_framework/uikit/dist/css/uikit.min.css" />
-    <link rel="stylesheet" href="../../static/pagesApp/login/login.css" />
+    <link rel="stylesheet" href="./res/login.css" />
     <script src="../../static/_framework/uikit/dist/js/uikit.min.js"></script>
     <script src="../../static/_framework/uikit/dist/js/components/notification.min.js"></script>
     <script src="../../static/_framework/uikit/dist/js/uikit-icons.min.js"></script>
     <!-- 模块js -->
-    <script src="../../static/pagesApp/login/login.js"></script>
+    <!-- <script src="./res/login.js"></script> -->
+    <script>
+        var login = require('./res/login.js')
+        window.onload = login.onload
+    </script>
+
 </head>
 
 
@@ -32,8 +37,8 @@
     </div>
 
     <div class="layout_buttom">
-        <button class="uk-button uk-button-default" onclick="saveConfig();">保存</button>
-        <button class="uk-button uk-button-primary" onclick="login();">登陆</button>
+        <button class="uk-button uk-button-default" onclick="login.saveConfig();">保存</button>
+        <button class="uk-button uk-button-primary" onclick="login.login();">登陆</button>
     </div>
 </body>
 
