@@ -3,12 +3,12 @@ const client = require('electron-connect').client;
 
 //electron框架
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
-var rootMenu = require('./module/rootMenu') //用户框架的 菜单
+const rootMenu = require('./module/rootMenu') //用户框架的 菜单
 
-var wins = require('./resMain/winMain') //窗口集中管理
-var configDB = require('./resMain/configDBMain');
-var login = require('./resMain/loginMain')
-
+const wins = require('./resMain/winMain') //窗口集中管理
+const configDB = require('./resMain/configDBMain');
+const login = require('./resMain/loginMain')
+const ccData = require('./resMain/loadCreateDataMain')
 
 wins.setBrowserWindow(BrowserWindow); //初始化
 
@@ -22,7 +22,7 @@ app.on('ready', createWindow)
 
 async function createWindow() {
     var rs = await login.login()
-    win = wins.createWindow.root('index.html');
+    win = wins.createWindow.root('./module/index/index.html');
     if (rs == '1') {
         win.show();
     } else {
@@ -31,7 +31,8 @@ async function createWindow() {
     // 注册ipc监听
     wins.regColseEventIPC(ipcMain)
     configDB.regIPC_configDB(ipcMain)
-    login.regIPC_login(ipcMain, win)
+    login.regIPC(ipcMain, win)
+    ccData.regIPC(ipcMain)
 
     //注册菜单
     rootMenu.f_regMenu(Menu, wins)

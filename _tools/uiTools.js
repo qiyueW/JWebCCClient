@@ -22,6 +22,12 @@ exports.notification = {
     },
     login_err: function() {
         f_notification('登陆失败', 'danger', 'top-center')
+    },
+    loadData_ok: function() {
+        f_notification('加载成功', 'success', 'top-center')
+    },
+    loadData_err: function() {
+        f_notification('加载失败', 'danger', 'top-center')
     }
 }
 

@@ -1,0 +1,33 @@
+html,
+body {
+    height: 100%;
+}
+
+
+/* 整个body变成弹性盒子 */
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* 中部 */
+
+.formCenter {
+    flex-grow: 1
+}
+
+.formCenter div {
+    margin: 8px;
+}
+
+
+/* 脚部空间 */
+
+.layout_buttom {
+    align-items: flex-end;
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+}

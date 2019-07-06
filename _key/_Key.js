@@ -49,6 +49,14 @@ exports.ipcKey = {
         /**
          * 退出
          */
-        out: 'ipckey_userSession_out'
+        out: 'ipckey_userSession_out',
+        /**
+         * 加载 代码数据
+         */
+        loadCCData: 'ipckey_userSession_loadCCData',
+        /**
+         * 清空服务器 缓存的代码数据
+         */
+        loadCCData: 'ipckey_userSession_removeCCData'
     }
 }

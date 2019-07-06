@@ -31,7 +31,7 @@ function login(obj, f_result) {
 //--------------------------------IPC------------------------------------------------
 var regCount = 0;
 //只注册一次
-exports.regIPC_login = function(ipcMain, rootWin) {
+exports.regIPC = function(ipcMain, rootWin) {
     if (regCount > 0) {
         return;
     }
