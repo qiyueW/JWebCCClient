@@ -14,16 +14,26 @@ function f_getLoadData() {
         uiTool.notification.loadData_ok()
         var ctext = ''
         var ccJsonData = JSON.parse(data);
+        var showHtml = ''
         for (var i = 0; i < ccJsonData.length; i++) {
             console.log(ccJsonData[i]);
-            ctext += ccJsonData[i][ccDataKey.ccData.filename] + ' ' + ccJsonData[i][ccDataKey.ccData.filepath] + '<br>'
+            showHtml += row(ccJsonData[i][ccDataKey.ccData.filename], ccJsonData[i][ccDataKey.ccData.filepath])
+                // ctext += ccJsonData[i][ccDataKey.ccData.filename] + ' ' + ccJsonData[i][ccDataKey.ccData.filepath] + '<br>'
         }
 
-        $('#showCCData').html(ctext)
+        $('#tbodyContent').html(showHtml)
     } else {
         uiTool.notification.loadData_err()
     }
 }
+
+function row(filename, filepath) {
+    return '<div class="uk-grid-collapse uk-child-width-expand@s" uk-grid>' +
+        '<div>' + filename + '</div><div>' + filepath + '</div>' +
+        '</div>'
+}
+
+// $('#tbodyContent').html(content);
 
 function showTitleToHtml(obj) {
 

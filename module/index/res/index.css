@@ -18,8 +18,8 @@ body {
     flex-grow: 1
 }
 
-.formCenter div {
-    margin: 8px;
+#tbodyContent div {
+    margin: 3px;
 }
 
 
