@@ -1,5 +1,3 @@
-require('electron-connect').client.create();
-
 const win = require('../../_common/win/winRenderer');
 const dao = require('../../_common/lowdb/config/configDBRenderer');
 const uiTool = require('../../../_tools/uiTools');

@@ -1,19 +1,17 @@
-require('electron-connect').client.create();
+// require('electron-connect').client.create();
 
 const ccData = require('./loadCreateDataRenderer')
 const ccDataKey = require('../../../_key/cc/ccDataKey')
 const uiTool = require('../../../_tools/uiTools');
 
 var $ = require("jquery");
-
-//------------------------------------------------------------
+var ccJsonData
+    //------------------------------------------------------------
 function f_getLoadData() {
     var data = ccData.loadCCData();
     if (data) {
-
         uiTool.notification.loadData_ok()
-        var ctext = ''
-        var ccJsonData = JSON.parse(data);
+        ccJsonData = JSON.parse(data);
         var showHtml = ''
         for (var i = 0; i < ccJsonData.length; i++) {
             console.log(ccJsonData[i]);
@@ -24,6 +22,7 @@ function f_getLoadData() {
         $('#tbodyContent').html(showHtml)
     } else {
         uiTool.notification.loadData_err()
+        ccJsonData = null
     }
 }
 
@@ -34,5 +33,12 @@ function row(filename, filepath) {
 }
 //-----------------------------------------------------------
 
-
+function f_createFile() {
+    if (ccJsonData) {
+        for (var i = 0; i < ccJsonData.length; i++) {
+            ccData.createCCDataFile(ccJsonData[i]);
+        }
+    }
+}
 exports.f_getLoadData = f_getLoadData
+exports.f_createFile = f_createFile

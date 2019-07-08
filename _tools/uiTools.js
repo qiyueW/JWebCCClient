@@ -28,6 +28,15 @@ exports.notification = {
     },
     loadData_err: function() {
         f_notification('加载失败', 'danger', 'top-center')
+    },
+
+    message: function(message, isOK) {
+        if (isOK) {
+            f_notification(message, 'success', 'top-center')
+        } else {
+            f_notification(message, 'danger', 'top-center')
+        }
+
     }
 }
 

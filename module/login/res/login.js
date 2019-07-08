@@ -1,4 +1,4 @@
-require('electron-connect').client.create();
+// require('electron-connect').client.create();
 
 const dao = require('../../_common/lowdb/config/configDBRenderer');
 var lowdbKey = dao.lowdbKey;

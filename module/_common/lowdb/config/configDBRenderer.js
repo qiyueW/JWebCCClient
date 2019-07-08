@@ -24,7 +24,6 @@ function saveProject(realPath, regexAndPath) {
 
 function getProject() {
     var obj = ipcRenderer.sendSync(key.ipcKey.lowdb.config.project_get, '');
-    console.log(obj)
     return obj;
 }
 

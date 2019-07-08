@@ -1,5 +1,6 @@
-const fs=require('fs');
-const strTool=require('./stringTool')
+const fs = require('fs')
+var path = require("path")
+const strTool = require('./stringTool')
 
 /**
  * 写文件
@@ -11,15 +12,17 @@ const strTool=require('./stringTool')
  * 
  * @returns boolean|undefined
  */
-function writeFileSync(filepath,fileName,fileContext,encode){
+async function writeFileSync(filepath, fileName, fileContext, encode) {
+    await mkdirsSync(filepath)
     const data = new Uint8Array(Buffer.from(fileContext));
-    return fs.writeFileSync(formatFilepath(filepath,fileName), data,{
-        encoding:encode?encode:'utf8'
+    var fileRealPathAndFileName = formatFilepath(filepath, fileName)
+    return await fs.writeFileSync(fileRealPathAndFileName, data, {
+        encoding: encode ? encode : 'utf8'
     });
 }
 
-exports.writeFileSync=writeFileSync
-exports.formatFilepath=formatFilepath
+exports.writeFileSync = writeFileSync
+exports.formatFilepath = formatFilepath
 
 
 /**
@@ -28,18 +31,28 @@ exports.formatFilepath=formatFilepath
  * @param {String} filepath2 文件名
  * @returns boolean
  */
-function formatFilepath(filepath1,filepath2){
-    if(!filepath2){
+function formatFilepath(filepath1, filepath2) {
+    if (!filepath2) {
         return filepath1;
     }
-    if(!filepath1){
+    if (!filepath1) {
         return filepath2;
     }
-    if(strTool.endWith(filepath1,'/')){
-        return filepath1+filepath2;
-    }else{
-        return filepath1+'/'+filepath2;
+    if (strTool.endWith(filepath1, '/')) {
+        return filepath1 + filepath2;
+    } else {
+        return filepath1 + '/' + filepath2;
     }
 }
 
-
+//创建目录 同步
+function mkdirsSync(dirPath) {
+    if (fs.existsSync(dirPath)) {
+        return true;
+    } else {
+        if (mkdirsSync(path.dirname(dirPath))) {
+            fs.mkdirSync(dirPath);
+            return true;
+        }
+    }
+}

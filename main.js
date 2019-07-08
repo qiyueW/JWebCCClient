@@ -1,5 +1,5 @@
 // 调试工具
-const client = require('electron-connect').client;
+// const client = require('electron-connect').client;
 
 //electron框架
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
@@ -38,7 +38,7 @@ async function createWindow() {
     rootMenu.f_regMenu(Menu, wins)
 
     // 打开开发者工具
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
 }
 
 
