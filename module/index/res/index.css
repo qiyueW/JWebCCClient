@@ -18,8 +18,9 @@ body {
     flex-grow: 1
 }
 
-#tbodyContent div {
+#tbodyContent>div {
     margin: 3px;
+    border: solid 1px;
 }
 
 

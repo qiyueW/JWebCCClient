@@ -29,7 +29,7 @@ function f_getLoadData() {
 
 function row(filename, filepath) {
     return '<div class="uk-grid-collapse uk-child-width-expand@s" uk-grid>' +
-        '<div>' + filename + '</div><div>' + filepath + '</div>' +
+        '<div>' + filename + '</div><div class="uk-background-primary uk-light">' + filepath + '</div>' +
         '</div>'
 }
 
