@@ -32,12 +32,7 @@ function row(filename, filepath) {
         '<div>' + filename + '</div><div class="uk-background-primary uk-light">' + filepath + '</div>' +
         '</div>'
 }
-
-// $('#tbodyContent').html(content);
-
-function showTitleToHtml(obj) {
-
-}
+//-----------------------------------------------------------
 
 
 exports.f_getLoadData = f_getLoadData
