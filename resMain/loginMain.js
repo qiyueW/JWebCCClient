@@ -17,7 +17,10 @@ function login(obj, f_result) {
     var account = obj[lowdbKey.config.server.account]; //账号
     var password = obj[lowdbKey.config.server.password] //密码
     if (!hostName || !account || !password) {
-        f_result('-2', -1)
+
+        if (f_result) {
+            f_result('-2', -1)
+        }
         return; //检查不通过
     }
     data.account = account
@@ -54,6 +57,10 @@ exports.regIPC = function(ipcMain, rootWin) {
     });
 
     ipcMain.on(key.ipcKey.userSession.out, (event, arg) => {
+        if (arg == '0') {
+            win.closeWin(_winKey.objects.userSession.login);
+            win.closeWin(_winKey.objects.root)
+        }
         event.returnValue = ''
     });
 

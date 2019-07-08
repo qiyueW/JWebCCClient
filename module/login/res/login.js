@@ -30,6 +30,10 @@ function login() {
     }
 
 }
+
+function exitLogin() {
+    loginTool.exitLogin()
+}
 //初始化
 function onload() {
     var obj = dao.getServer()
@@ -44,3 +48,4 @@ exports.login = login
 exports.saveConfig = saveConfig
 exports.onload = onload
 exports.lowdbKey = lowdbKey
+exports.exitLogin = exitLogin

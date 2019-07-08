@@ -1,0 +1,189 @@
+<?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?>
+${bean.dtd_mybatis}
+<mapper namespace=&#34;${bean.namespace_dao_xml}&#34;>
+    <resultMap id=&#34;BaseResultMap&#34; type=&#34;wx.web.bean.Hetong&#34;>
+        <result column=&#34;hetong_zj&#34; property=&#34;hetong_zj&#34; jdbcType=&#34;${field.m_type}&#34;/><!--主键-->
+        <result column=&#34;hetong_fzj&#34; property=&#34;hetong_fzj&#34; jdbcType=&#34;${field.m_type}&#34;/><!--父子合同父键-->
+        <result column=&#34;hetong_mingcheng&#34; property=&#34;hetong_mingcheng&#34; jdbcType=&#34;${field.m_type}&#34;/><!--合同名称-->
+        <result column=&#34;hetong_bianhao&#34; property=&#34;hetong_bianhao&#34; jdbcType=&#34;${field.m_type}&#34;/><!--编号-->
+        <result column=&#34;hetong_kaishiriqi&#34; property=&#34;hetong_kaishiriqi&#34; jdbcType=&#34;${field.m_type}&#34;/><!--开始日期-->
+        <result column=&#34;hetong_jieshuriqi&#34; property=&#34;hetong_jieshuriqi&#34; jdbcType=&#34;${field.m_type}&#34;/><!--结束日期-->
+        <result column=&#34;hetong_qianyueren&#34; property=&#34;hetong_qianyueren&#34; jdbcType=&#34;${field.m_type}&#34;/><!--签约人-->
+        <result column=&#34;hetong_qianyueren_zj&#34; property=&#34;hetong_qianyueren_zj&#34; jdbcType=&#34;${field.m_type}&#34;/><!--签约人主键-->
+        <result column=&#34;hetong_shoujihaoma&#34; property=&#34;hetong_shoujihaoma&#34; jdbcType=&#34;${field.m_type}&#34;/><!--手机号码-->
+        <result column=&#34;hetong_xingbie&#34; property=&#34;hetong_xingbie&#34; jdbcType=&#34;${field.m_type}&#34;/><!--性别-->
+        <result column=&#34;hetong_yuefangzu&#34; property=&#34;hetong_yuefangzu&#34; jdbcType=&#34;${field.m_type}&#34;/><!--月房租（月计）-->
+        <result column=&#34;hetong_qianyuerenzhaopian1&#34; property=&#34;hetong_qianyuerenzhaopian1&#34; jdbcType=&#34;${field.m_type}&#34;/><!--签约人照片1-->
+        <result column=&#34;hetong_qianyuerenzhaopian2&#34; property=&#34;hetong_qianyuerenzhaopian2&#34; jdbcType=&#34;${field.m_type}&#34;/><!--签约人照片2-->
+        <result column=&#34;hetong_qianyuerenzhaopian3&#34; property=&#34;hetong_qianyuerenzhaopian3&#34; jdbcType=&#34;${field.m_type}&#34;/><!--签约人照片3-->
+        <result column=&#34;hetong_beizhu&#34; property=&#34;hetong_beizhu&#34; jdbcType=&#34;${field.m_type}&#34;/><!--合同备注-->
+        <result column=&#34;hetong_neirong&#34; property=&#34;hetong_neirong&#34; jdbcType=&#34;${field.m_type}&#34;/><!--合同内容-->
+        <result column=&#34;hetong_zhidanshijia&#34; property=&#34;hetong_zhidanshijia&#34; jdbcType=&#34;${field.m_type}&#34;/><!--制单时间-->
+        <result column=&#34;hetong_zt&#34; property=&#34;hetong_zt&#34; jdbcType=&#34;${field.m_type}&#34;/><!--单据状态-->
+    </resultMap>
+
+<!--配置区↓-->
+
+    <!-- 配置：数据库表名称 -->
+    <sql id=&#34;table&#34;>`${bean.db_name_table}`</sql>
+    <!-- 配置：数据库表主键字段名称  -->
+    <sql id=&#34;pk_col&#34;>`${bean.db_name_table}`.`hetong_zj`</sql>
+    <!-- 配置：实体主键字段 -->
+    <sql id=&#34;pk_prop&#34;>#{hetong_zj}</sql>
+    <!-- 配置：基础信息字段 -->
+    <sql id=&#34;cols&#34;>
+        <include refid=&#34;table&#34;/>.`hetong_zj`, <!--主键-->    
+        <include refid=&#34;table&#34;/>.`hetong_fzj`,<!--父子合同父键-->
+        <include refid=&#34;table&#34;/>.`hetong_mingcheng`,<!--合同名称-->
+        <include refid=&#34;table&#34;/>.`hetong_bianhao`,<!--编号-->
+        <include refid=&#34;table&#34;/>.`hetong_kaishiriqi`,<!--开始日期-->
+        <include refid=&#34;table&#34;/>.`hetong_jieshuriqi`,<!--结束日期-->
+        <include refid=&#34;table&#34;/>.`hetong_qianyueren`,<!--签约人-->
+        <include refid=&#34;table&#34;/>.`hetong_qianyueren_zj`,<!--签约人主键-->
+        <include refid=&#34;table&#34;/>.`hetong_shoujihaoma`,<!--手机号码-->
+        <include refid=&#34;table&#34;/>.`hetong_xingbie`,<!--性别-->
+        <include refid=&#34;table&#34;/>.`hetong_yuefangzu`,<!--月房租（月计）-->
+        <include refid=&#34;table&#34;/>.`hetong_qianyuerenzhaopian1`,<!--签约人照片1-->
+        <include refid=&#34;table&#34;/>.`hetong_qianyuerenzhaopian2`,<!--签约人照片2-->
+        <include refid=&#34;table&#34;/>.`hetong_qianyuerenzhaopian3`,<!--签约人照片3-->
+        <include refid=&#34;table&#34;/>.`hetong_beizhu`,<!--合同备注-->
+        <include refid=&#34;table&#34;/>.`hetong_neirong`,<!--合同内容-->
+        <include refid=&#34;table&#34;/>.`hetong_zhidanshijia`,<!--制单时间-->
+        <include refid=&#34;table&#34;/>.`hetong_zt` <!--单据状态-->
+    </sql>
+    <!-- 配置：基础信息字段 -->
+    <sql id=&#34;props&#34;>
+        #{hetong_zj}, <!--主键-->    
+         #{hetong_fzj},<!--父子合同父键-->
+         #{hetong_mingcheng},<!--合同名称-->
+         #{hetong_bianhao},<!--编号-->
+         #{hetong_kaishiriqi},<!--开始日期-->
+         #{hetong_jieshuriqi},<!--结束日期-->
+         #{hetong_qianyueren},<!--签约人-->
+         #{hetong_qianyueren_zj},<!--签约人主键-->
+         #{hetong_shoujihaoma},<!--手机号码-->
+         #{hetong_xingbie},<!--性别-->
+         #{hetong_yuefangzu},<!--月房租（月计）-->
+         #{hetong_qianyuerenzhaopian1},<!--签约人照片1-->
+         #{hetong_qianyuerenzhaopian2},<!--签约人照片2-->
+         #{hetong_qianyuerenzhaopian3},<!--签约人照片3-->
+         #{hetong_beizhu},<!--合同备注-->
+         #{hetong_neirong},<!--合同内容-->
+         #{hetong_zhidanshijia},<!--制单时间-->
+        #{hetong_zt} <!--单据状态-->
+    </sql>
+    <!-- 配置：更新基础信息字段-->
+    <sql id=&#34;update_base&#34;>
+        <include refid=&#34;table&#34;/>.`hetong_fzj` = #{hetong_fzj},<!--父子合同父键-->
+        <include refid=&#34;table&#34;/>.`hetong_mingcheng` = #{hetong_mingcheng},<!--合同名称-->
+        <include refid=&#34;table&#34;/>.`hetong_bianhao` = #{hetong_bianhao},<!--编号-->
+        <include refid=&#34;table&#34;/>.`hetong_kaishiriqi` = #{hetong_kaishiriqi},<!--开始日期-->
+        <include refid=&#34;table&#34;/>.`hetong_jieshuriqi` = #{hetong_jieshuriqi},<!--结束日期-->
+        <include refid=&#34;table&#34;/>.`hetong_qianyueren` = #{hetong_qianyueren},<!--签约人-->
+        <include refid=&#34;table&#34;/>.`hetong_qianyueren_zj` = #{hetong_qianyueren_zj},<!--签约人主键-->
+        <include refid=&#34;table&#34;/>.`hetong_shoujihaoma` = #{hetong_shoujihaoma},<!--手机号码-->
+        <include refid=&#34;table&#34;/>.`hetong_xingbie` = #{hetong_xingbie},<!--性别-->
+        <include refid=&#34;table&#34;/>.`hetong_yuefangzu` = #{hetong_yuefangzu},<!--月房租（月计）-->
+        <include refid=&#34;table&#34;/>.`hetong_qianyuerenzhaopian1` = #{hetong_qianyuerenzhaopian1},<!--签约人照片1-->
+        <include refid=&#34;table&#34;/>.`hetong_qianyuerenzhaopian2` = #{hetong_qianyuerenzhaopian2},<!--签约人照片2-->
+        <include refid=&#34;table&#34;/>.`hetong_qianyuerenzhaopian3` = #{hetong_qianyuerenzhaopian3},<!--签约人照片3-->
+        <include refid=&#34;table&#34;/>.`hetong_beizhu` = #{hetong_beizhu},<!--合同备注-->
+        <include refid=&#34;table&#34;/>.`hetong_neirong` = #{hetong_neirong},<!--合同内容-->
+        <include refid=&#34;table&#34;/>.`hetong_zhidanshijia` = #{hetong_zhidanshijia},<!--制单时间-->
+        <include refid=&#34;table&#34;/>.`hetong_zt` = #{hetong_zt}<!--单据状态-->
+    </sql>
+    <!-- 配置：更新状态信息字段 -->
+    <sql id=&#34;update_status&#34;>
+        <include refid=&#34;table&#34;/>.`status` = #{status},
+        <include refid=&#34;table&#34;/>.`modifier` = #{modifier},
+        <include refid=&#34;table&#34;/>.`modifier_name` = #{modifierName},
+        <include refid=&#34;table&#34;/>.`modify_time` = #{modifyTime}
+    </sql>
+
+<!--配置区↑-->
+<!--添加区↓-->
+
+    <!--合同:保存一条记录-->
+    <insert id=&#34;save&#34; parameterType=&#34;wx.web.bean.Hetong&#34; keyProperty=&#34;hetong_zj&#34;>
+        <selectKey keyProperty=&#34;hetong_zj&#34; order=&#34;BEFORE&#34; resultType=&#34;java.lang.Long&#34;>
+            select gen_ticket64() as ticket
+        </selectKey>
+        INSERT INTO
+        <include refid=&#34;table&#34;/>
+        (<include refid=&#34;cols&#34;/>)
+        VALUES (<include refid=&#34;props&#34;/>)
+    </insert>
+
+<!--添加区↑-->
+<!--删除区↓-->
+
+    <!--合同:删除一条记录（根据主键）-->
+    <delete id=&#34;delete&#34;>
+        DELETE FROM
+        <include refid=&#34;table&#34;/>
+        WHERE
+        <include refid=&#34;pk_col&#34;/>
+        =
+        <include refid=&#34;pk_prop&#34;/>
+    </delete>
+
+<!--删除区↑-->
+<!--更新区↓-->
+
+    <!--合同:更新基础资料-->
+    <update id=&#34;updateBase&#34;>
+        update
+        <include refid=&#34;table&#34;/>
+        set
+        <include refid=&#34;update_status&#34;/>
+        where
+        <include refid=&#34;pk_col&#34;/>
+        =
+        <include refid=&#34;pk_prop&#34;/>
+    </update>
+    <!--合同:更新状态-->
+    <update id=&#34;updateStatus&#34;>
+        update
+        <include refid=&#34;table&#34;/>
+        set
+        <include refid=&#34;update_status&#34;/>
+        where
+        <include refid=&#34;pk_col&#34;/>
+        =
+        <include refid=&#34;pk_prop&#34;/>
+    </update>
+
+<!--更新区↑-->
+<!--查询区↓-->    
+
+    <!--合同:获取一条记录-->
+    <select id=&#34;get&#34; parameterType=&#34;java.lang.Long&#34; resultMap=&#34;BaseResultMap&#34;>
+        select
+        <include refid=&#34;cols&#34;/>
+        FROM
+        <include refid=&#34;table&#34;/>
+        where
+        <include refid=&#34;pk_col&#34;/>
+        =
+        <include refid=&#34;pk_prop&#34;/>
+    </select>
+    <!--合同:获取多条记录-->
+    <select id=&#34;findByCondition&#34; resultMap=&#34;BaseResultMap&#34;>
+        select
+        <include refid=&#34;cols&#34;/>
+        FROM
+        <include refid=&#34;table&#34;/>
+        where 1=1 #{condition}
+    </select>
+    <!--合同:统计-->
+    <select id=&#34;getCountByCondition&#34; resultMap=&#34;BaseResultMap&#34;>
+        select
+        count(*)
+        FROM
+        <include refid=&#34;table&#34;/>
+        where 1=1 #{condition}
+    </select>
+
+<!--查询区↑-->
+
+</mapper>
