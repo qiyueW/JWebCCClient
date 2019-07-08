@@ -38,7 +38,7 @@ async function createWindow() {
     rootMenu.f_regMenu(Menu, wins)
 
     // 打开开发者工具
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
 }
 
 
