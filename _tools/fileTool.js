@@ -16,6 +16,7 @@ async function writeFileSync(filepath, fileName, fileContext, encode) {
     await mkdirsSync(filepath)
     const data = new Uint8Array(Buffer.from(fileContext));
     var fileRealPathAndFileName = formatFilepath(filepath, fileName)
+    console.log(fileRealPathAndFileName)
     return await fs.writeFileSync(fileRealPathAndFileName, data, {
         encoding: encode ? encode : 'utf8'
     });
@@ -50,6 +51,7 @@ function mkdirsSync(dirPath) {
     if (fs.existsSync(dirPath)) {
         return true;
     } else {
+        console.log('文件路径= ' + dirPath)
         if (mkdirsSync(path.dirname(dirPath))) {
             fs.mkdirSync(dirPath);
             return true;

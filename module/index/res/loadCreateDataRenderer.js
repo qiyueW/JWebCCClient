@@ -31,8 +31,8 @@ async function createCCDataFile(obj) {
 
 
 
-    //文件真实路径：文件真实路径=项目真实路径+文件项目路径
-    var realpath;
+    //文件真实路径：文件真实路径=项目真实路径+文件项目路径 
+    var realpath = fsTool.formatFilepath(projectFilePath_real, filepath); //默认是  文件真实路径=项目真实路径+文件路径
 
     //根据表达式，找到文件的追加的路径
     if (projectObjct[lowdbKey.config.project.regexMapPath]) {
@@ -44,10 +44,8 @@ async function createCCDataFile(obj) {
                 break;
             }
         }
-    } else {
-        //文件真实路径=项目真实路径+文件路径
-        realpath = fsTool.formatFilepath(projectFilePath_real, filepath);
     }
+
     //项目文件内容
     var content = obj[ccDataKey.ccData.filecontext]
 
@@ -57,8 +55,9 @@ async function createCCDataFile(obj) {
             content = content.replace(kv[lowdbKey.config.projectMap.kv_keyKey], kv[lowdbKey.config.projectMap.kv_valueKey])
         }
     }
+
+    console.log('realpath===============' + realpath + '   fileName=' + fileName)
     var rs = await fsTool.writeFileSync(realpath, fileName, content);
-    console.log('执行结果===============' + rs)
     uiTool.notification.message(fileName + ' 生成成功', true)
 }
 

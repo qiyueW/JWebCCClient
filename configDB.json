@@ -3,7 +3,11 @@
     "server": {
       "url": "https://nuwait.cn",
       "account": "wangchunzi",
-      "password": "123"
+      "password": "pk9821888w"
+    },
+    "project": {
+      "real": "C:\\Users\\rootServer\\Documents\\dd\\work-space",
+      "regexMapPath": []
     }
   }
 }

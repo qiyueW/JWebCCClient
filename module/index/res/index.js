@@ -14,15 +14,13 @@ function f_getLoadData() {
         ccJsonData = JSON.parse(data);
         var showHtml = ''
         for (var i = 0; i < ccJsonData.length; i++) {
-            console.log(ccJsonData[i]);
             showHtml += row(ccJsonData[i][ccDataKey.ccData.filename], ccJsonData[i][ccDataKey.ccData.filepath])
-                // ctext += ccJsonData[i][ccDataKey.ccData.filename] + ' ' + ccJsonData[i][ccDataKey.ccData.filepath] + '<br>'
         }
-
         $('#tbodyContent').html(showHtml)
     } else {
         uiTool.notification.loadData_err()
         ccJsonData = null
+        $('#tbodyContent').html('')
     }
 }
 
