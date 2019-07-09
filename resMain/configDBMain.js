@@ -9,12 +9,38 @@ const configDB = lowDao.getConfigDB();
 function set(key, value) {
     lowDao.set(configDB, key, value);
 }
+if (undefined == getServer(lowdbKey.config.server.url)) {
+    configDB.set(lowdbKey.config.server.url, 'http://127.0.0.1').value(); //默认服务器地址是127.0.0.1
+    if (undefined == getServer(lowdbKey.config.server.account)) {
+        configDB.set(lowdbKey.config.server.account, '').value();
+    }
+    if (undefined == getServer(lowdbKey.config.server.password)) {
+        configDB.set(lowdbKey.config.server.password, '').value();
+    }
+    //如果项目键值对为null,设置默认值
+    if (undefined == configDB.get(lowdbKey.config.projectMap.kv).value()) {
+        var kv = [{
+                "k1": "&#34;",
+                "k2": "\""
+            },
+            {
+                "k1": "&quot;",
+                "k2": "\""
+            },
+            {
+                "k1": "&#92;",
+                "k2": "\\"
+            }
+        ]
+        configDB.set(lowdbKey.config.projectMap.kv, kv).value(); //这个是一个数组
+    }
 
+    configDB.write();
+}
 //--------------------------------服务器配置------------------------------------------------
 
 //配置区：往configDB 保存 服务器配置
 function setServer(param_configDbObj) { //config.server.url=lowdbKey.config.server.url
-    console.log(param_configDbObj)
     configDB.set(lowdbKey.config.server.url, param_configDbObj[lowdbKey.config.server.url]).value();
     configDB.set(lowdbKey.config.server.account, param_configDbObj[lowdbKey.config.server.account]).value();
     configDB.set(lowdbKey.config.server.password, param_configDbObj[lowdbKey.config.server.password]).value();
