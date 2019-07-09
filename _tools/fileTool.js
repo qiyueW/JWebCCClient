@@ -16,7 +16,7 @@ async function writeFileSync(filepath, fileName, fileContext, encode) {
     await mkdirsSync(filepath)
     const data = new Uint8Array(Buffer.from(fileContext));
     var fileRealPathAndFileName = formatFilepath(filepath, fileName)
-    console.log(fileRealPathAndFileName)
+        // console.log(fileRealPathAndFileName)
     return await fs.writeFileSync(fileRealPathAndFileName, data, {
         encoding: encode ? encode : 'utf8'
     });

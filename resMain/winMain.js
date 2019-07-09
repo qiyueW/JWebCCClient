@@ -85,7 +85,7 @@ function private_createRootConfigServer(key, title, url) {
         }, url);
     }
     // // 打开开发者工具
-    // WIN[key].webContents.openDevTools()
+    WIN[key].webContents.openDevTools()
     return WIN[key];
 }
 //窗口

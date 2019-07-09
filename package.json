@@ -14,9 +14,10 @@
         "electron": "^5.0.6"
     },
     "dependencies": {
+        "electron-connect": "^0.6.3",
         "gulp": "^4.0.2",
+        "jquery": "3.4.1",
         "lowdb": "^1.0.0",
-        "uikit": "^3.1.6",
-        "jquery": "3.4.1"
+        "uikit": "^3.1.6"
     }
 }
