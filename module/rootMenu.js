@@ -1,8 +1,10 @@
 var wins;
-const template = [{
-        label: '菜单',
-        submenu: []
-    }, {
+const template = [
+    // {
+    //     label: '菜单',
+    //     submenu: []
+    // }, 
+    {
         label: '代码生成器配置',
         submenu: [{
                 label: '项目设置',
