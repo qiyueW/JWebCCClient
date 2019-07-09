@@ -1,29 +1,28 @@
 {
-  "config": {
-    "server": {
-      "url": "https://nuwait.cn",
-      "account": "wangchunzi",
-      "password": "pk9821888w"
-    },
-    "projectMap": {
-      "kv": [
-        {
-          "k1": "&#34;",
-          "k2": "\""
+    "config": {
+        "server": {
+            "url": "https://nuwait.cn",
+            "account": "wangchunzi",
+            "password": ""
         },
-        {
-          "k1": "&quot;",
-          "k2": "\""
+        "projectMap": {
+            "kv": [{
+                    "k1": "&#34;",
+                    "k2": "\""
+                },
+                {
+                    "k1": "&quot;",
+                    "k2": "\""
+                },
+                {
+                    "k1": "&#92;",
+                    "k2": "\\"
+                }
+            ]
         },
-        {
-          "k1": "&#92;",
-          "k2": "\\"
+        "project": {
+            "real": "C:\\Users\\rootServer\\Documents\\node-workspace\\aas",
+            "regexMapPath": []
         }
-      ]
-    },
-    "project": {
-      "real": "C:\\Users\\rootServer\\Documents\\node-workspace\\aas",
-      "regexMapPath": []
     }
-  }
 }
