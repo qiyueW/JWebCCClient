@@ -1,0 +1,28 @@
+{
+    "config": {
+        "server": {
+            "url": "https://nuwait.cn",
+            "account": "wangchunzi",
+            "password": ""
+        },
+        "projectMap": {
+            "kv": [{
+                    "k1": "&#34;",
+                    "k2": "\""
+                },
+                {
+                    "k1": "&quot;",
+                    "k2": "\""
+                },
+                {
+                    "k1": "&#92;",
+                    "k2": "\\"
+                }
+            ]
+        },
+        "project": {
+            "real": "C:\\Users\\rootServer\\Documents\\node-workspace\\aas",
+            "regexMapPath": []
+        }
+    }
+}
