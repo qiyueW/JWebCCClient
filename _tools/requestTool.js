@@ -148,6 +148,7 @@ function httpResponse(httpOrHttps, protocol, host, port, postOrGet, url, content
         hostname: host,
         port: port,
         path: url,
+        timeout: 2000,
         method: postOrGet ? postOrGet : 'get',
         headers: {
             'Content-Type': contentType ? contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -191,6 +192,7 @@ function httpResponse_async(httpOrHttps, protocol, host, port, postOrGet, url, c
             hostname: host,
             port: port,
             path: url,
+            timeout: 2000,
             method: postOrGet ? postOrGet : 'get',
             headers: {
                 'Content-Type': contentType ? contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -219,6 +221,8 @@ function httpResponse_async(httpOrHttps, protocol, host, port, postOrGet, url, c
             if (f_result) {
                 f_result(text, -1)
                 reject(text)
+            } else {
+                reject(err)
             }
         });
         req.write(data)

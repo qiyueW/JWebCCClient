@@ -21,7 +21,14 @@ let win
 app.on('ready', createWindow)
 
 async function createWindow() {
-    var rs = await login.login()
+    var rs
+    try {
+        rs = await login.login()
+    } catch (error) {
+        console.log('........net err.......')
+    }
+
+
     win = wins.createWindow.root('./module/index/index.html');
     if (rs == '1') {
         win.show();

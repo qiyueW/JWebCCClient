@@ -3,7 +3,7 @@
         "server": {
             "url": "https://nuwait.cn",
             "account": "wangchunzi",
-            "password": ""
+            "password": "123"
         },
         "projectMap": {
             "kv": [{
