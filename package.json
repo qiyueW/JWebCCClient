@@ -1,23 +1,31 @@
 {
-    "name": "jweb",
+    "name": "jwebc",
     "version": "1.0.0",
     "description": "66666666666666666",
     "main": "main.js",
+    "build": {
+        "appId": "weixinkeji.vip.jwebcc",
+        "win": {
+            "target": ["nsis", "zip"],
+            "icon": "./logo.ico"
+        },
+        "files": ["**/*", "*.ico"]
+    },
     "scripts": {
         "start": "electron .",
-        "pack": "electron-packager . JWebCClient --win --out ../JWebCClient --arch=x64 --app-version=1 --electron-version=5.0.6 --icon=./favicon.ico",
-        "hot": ".\\node_modules\\.bin\\gulp watch:electron"
+        "pack": "electron-packager . JWebCClient --win --out ../JWebCClient --arch=x64 --app-version=1 --electron-version=5.0.6 --icon=./logo.ico",
+        "package": "electron-packager . --out ../JWebCClient --app-version 1 --overwrite --icon=./logo.ico"
     },
     "author": "wangchunzi",
     "license": "ISC",
     "devDependencies": {
-        "electron": "^5.0.6"
+        "electron": "^5.0.6",
+        "electron-builder": "^20.44.4",
+        "electron-connect": "^0.6.3",
+        "gulp": "^4.0.2"
     },
     "dependencies": {
-        "electron-connect": "^0.6.3",
-        "gulp": "^4.0.2",
         "jquery": "3.4.1",
-        "lowdb": "^1.0.0",
-        "uikit": "^3.1.6"
+        "lowdb": "^1.0.0"
     }
 }
