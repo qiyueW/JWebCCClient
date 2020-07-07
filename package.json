@@ -19,7 +19,7 @@
     "author": "wangchunzi",
     "license": "ISC",
     "devDependencies": {
-        "electron": "^5.0.6",
+        "electron": "^9.1.0",
         "electron-builder": "^20.44.4",
         "electron-connect": "^0.6.3",
         "gulp": "^4.0.2"
